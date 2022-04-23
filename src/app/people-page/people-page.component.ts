@@ -3,37 +3,39 @@ import { SearchModelService } from '../search/search-model.service';
 import { SearchModel } from '../search/search-model';
 import { Router } from '@angular/router';
 
-@Component({
-  selector: 'app-category-page',
-  templateUrl: './category-page.component.html',
-  styleUrls: ['./category-page.component.css']
-})
-export class CategoryPageComponent implements OnInit {
 
-  categoryResults: any[] = [];
-  categoryString: string = "";
+
+@Component({
+  selector: 'app-people-page',
+  templateUrl: './people-page.component.html',
+  styleUrls: ['./people-page.component.css']
+})
+export class PeoplePageComponent implements OnInit {
+
+  peopleResults: any[] = [];
+  // categoryString: string = "";
   searchModel = new SearchModel();
 
   constructor(private searchModelService: SearchModelService, private router: Router) { }
 
   ngOnInit(): void {
-    this.getJokesCategories();
+    this.getPeople();
   }
 
 
-  getJokesCategories(): void {
-    this.searchModelService.getJokesCategories().subscribe(
+  getPeople(): void {
+    this.searchModelService.getPeople().subscribe(
       (resp: any) => {
             if(Array.isArray(resp)){
-              this.categoryResults = resp;
-              console.log('=2=> ', resp);
+              this.peopleResults = resp;
+              console.log('=5=> ', resp);
             }
       }
     );
     }
 
 
-    doRandomJokesUsingCategory(category: string): void {
+    doGetPeople(category: string): void {
       if(this.searchModel !== undefined){
         this.searchModel.setCategoryString( category );
       this.searchModelService.storeCategoryStringInLocalStorage(this.searchModel);

@@ -31,24 +31,12 @@ export class CategoryDetailPageComponent implements OnInit {
       (resp: any) => {
               this.jokesResults = resp;
               console.log('=3=> ', resp);
-              // this.searchModel.repoName = resp[0].repoName;
-              // this.searchModel.setSearchQueryString( resp[0].searchQueryString );
               this.searchModel.setCategoryString( this.searchModel.getCategoryString() );
 
             this.searchModelService.storeCategoryStringInLocalStorage(this.searchModel);
       }
     );
     }
-
-
-
-    // doCommits(searchResult: any): void {
-    //   if(this.searchModel !== undefined){
-    //     this.searchModel.repoName = searchResult.repoName;
-    //   this.searchModelService.storeSearchInLocalStorage(this.searchModel);
-    //   this.router.navigate(['/commits']);
-    //   }
-    // }
 
 
 }

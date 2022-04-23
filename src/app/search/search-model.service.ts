@@ -20,6 +20,8 @@ export class SearchModelService {
 
   private jokesCategoriesUrl = this.baseUrl+'/chuck/categories';
 
+  private peopleUrl = this.baseUrl+'/swapi/people';
+
   private randomJokesFromCategoryUrl = 'https://api.chucknorris.io/jokes/random?category=';
 
   // private getCommitsUrl = this.baseUrl+'/api/commits';
@@ -37,14 +39,13 @@ export class SearchModelService {
   }
 
   getRandomCategoryDetails(categoryString: string) {
-    console.log('==>>- ', this.randomJokesFromCategoryUrl + categoryString);
     return this._http.get(this.randomJokesFromCategoryUrl + categoryString);
   }
 
 
-  // getCommits(searchModel: SearchModel) {
-  //   return this._http.get(this.getCommitsUrl+'/'+searchModel.username+'/'+searchModel.repoName);
-  // }
+  getPeople() {
+    return this._http.get(this.peopleUrl);
+  }
 
 
   storeSearchInLocalStorage(searchModel: SearchModel){
@@ -60,8 +61,6 @@ export class SearchModelService {
       localStorage.removeItem('searchQueryString');
     }
   }
-
-  // 
 
   storeCategoryStringInLocalStorage(searchModel: SearchModel){
     if(searchModel.getCategoryString() !== undefined){
