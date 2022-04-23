@@ -11,6 +11,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import * as bootstrap from "bootstrap";
 import * as $ from "jquery";
 import { SearchPageComponent } from './search-page/search-page.component';
+import { CategoryPageComponent } from './category-page/category-page.component';
+import { CategoryDetailPageComponent } from './category-detail-page/category-detail-page.component';
 
 
 
@@ -18,7 +20,9 @@ import { SearchPageComponent } from './search-page/search-page.component';
   declarations: [
     AppComponent,
     IndexPageComponent,
-    SearchPageComponent
+    SearchPageComponent,
+    CategoryPageComponent,
+    CategoryDetailPageComponent
   ],
   imports: [
     BrowserModule,

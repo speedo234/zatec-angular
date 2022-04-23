@@ -18,7 +18,11 @@ export class SearchModelService {
 
   private searchUrl = this.baseUrl+'/search';
 
-  private getCommitsUrl = this.baseUrl+'/api/commits';
+  private jokesCategoriesUrl = this.baseUrl+'/chuck/categories';
+
+  private randomJokesFromCategoryUrl = 'https://api.chucknorris.io/jokes/random?category=';
+
+  // private getCommitsUrl = this.baseUrl+'/api/commits';
 
   constructor(private _http: HttpClient, private router: Router) { 
 
@@ -26,6 +30,15 @@ export class SearchModelService {
 
   doSearch(searchQueryString: string) {
     return this._http.get(this.searchUrl+'/'+searchQueryString);
+  }
+
+  getJokesCategories() {
+    return this._http.get(this.jokesCategoriesUrl);
+  }
+
+  getRandomCategoryDetails(categoryString: string) {
+    console.log('==>>- ', this.randomJokesFromCategoryUrl + categoryString);
+    return this._http.get(this.randomJokesFromCategoryUrl + categoryString);
   }
 
 
@@ -36,17 +49,31 @@ export class SearchModelService {
 
   storeSearchInLocalStorage(searchModel: SearchModel){
     if(searchModel.getSearchQueryString() !== undefined){
-      // localStorage.setItem('username', searchModel.username);
       localStorage.setItem('searchQueryString', searchModel.getSearchQueryString() );
     }
   }
 
   storeSearchInSearchModel(searchModel: SearchModel){
     if(localStorage.getItem('searchQueryString') != null){
-      // searchModel.username = localStorage.getItem('username')!;
       searchModel.setSearchQueryString( localStorage.getItem('searchQueryString')! );
     }else{
       localStorage.removeItem('searchQueryString');
+    }
+  }
+
+  // 
+
+  storeCategoryStringInLocalStorage(searchModel: SearchModel){
+    if(searchModel.getCategoryString() !== undefined){
+      localStorage.setItem('categoryString', searchModel.getCategoryString() );
+    }
+  }
+
+  storeCategoryStringInSearchModel(searchModel: SearchModel){
+    if(localStorage.getItem('categoryString') != null){
+      searchModel.setCategoryString( localStorage.getItem('categoryString')! );
+    }else{
+      localStorage.removeItem('categoryString');
     }
   }
 

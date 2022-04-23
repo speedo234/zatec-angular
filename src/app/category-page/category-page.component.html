@@ -40,103 +40,28 @@
 
     <div class="content-section-a">
 
-
-        <!-- PEOPLE DETAILS STARTS HERE -->
-
-        <div class="container">
-
-        <h2 *ngIf=" searchQueryString " style="margin-top: 50px;">People Details for {{ searchQueryString }}:</h2>
-        <h2 *ngIf=" !searchQueryString " style="margin-top: 50px;"> No Data Found:</h2>
-
-            <table class="table table-striped">
-        <!-- table header -->
-  <thead>
-    <tr>
-      <th scope="col">Name</th>
-      <th scope="col">DoB</th>
-      <th scope="col">Gender</th>
-      <th scope="col">Eye Color</th>
-      <th scope="col">Skin Color</th>
-      <th scope="col">Hair Color</th>
-      <th scope="col">Height</th>
-      <th scope="col">Weight</th>
-      <th scope="col">Films</th>
-      <th scope="col">Vehicles</th>
-      <th scope="col">Starships</th>
-      <!-- <th scope="col">Select</th> -->
-    </tr>
-  </thead>
-
-  <!-- table body -->
-  <tbody *ngIf="searchResults !== undefined">
-
-    <tr class="tabrow" *ngFor="let peopleResult of searchResults[0] ">
-      <td>{{peopleResult.name}}</td>
-      <td>{{peopleResult.birth_year}}</td>
-      <td>{{peopleResult.gender}}</td>
-      <td>{{peopleResult.eye_color}}</td>
-      <td>{{peopleResult.skin_color}}</td>
-      <td>{{peopleResult.hair_color}}</td>
-      <td>{{peopleResult.height}}</td>
-      <td>{{peopleResult.mass}}</td>
-      <td>
-          <p *ngFor="let film of peopleResult.films "> {{film}} </p>
-        </td>
-        <td>
-            <p *ngFor="let vehicles of peopleResult.vehicles "> {{vehicles}} </p>
-          </td>
-          <td>
-            <p *ngFor="let starship of peopleResult.starships "> {{starship}} </p>
-          </td>
-      <!-- <td> <button type="button" class="btn btn-primary" (click)= ' doCommits( searchResult ) ' > Select</button> </td> -->
-    </tr>
-
-    
-  </tbody>
-
-
-  								  <!--Table body if no result if found-->
-                                    <tbody *ngIf="searchResults.length == 0">
-                                        <tr class="tabrow" >
-                                              <td colspan="7">
-                                                  No Results Found
-                                              </td>
-                                          </tr>
-                                      </tbody>
-
-
-
-</table>
-
-
-    </div>
-
-
-
-    <!-- JOKE DETAILS STARTS HERE -->
+    <!-- JOKE CATEGORIES STARTS HERE -->
 
     <div class="container">
 
-        <h2 *ngIf=" searchQueryString " style="margin-top: 50px;">Joke Details for {{ searchQueryString }}:</h2>
-        <h2 *ngIf=" !searchQueryString " style="margin-top: 50px;"> No Data Found:</h2>
+        <h2 *ngIf=" categoryResults " style="margin-top: 50px;">Joke Categories:</h2>
+        <h2 *ngIf=" !categoryResults " style="margin-top: 50px;"> No Data Found:</h2>
 
             <table class="table table-striped">
         <!-- table header -->
   <thead>
     <tr>
-      <th scope="col">Url</th>
-      <th scope="col">Joke</th>
+      <th scope="col">Categories</th>
       <!-- <th scope="col">Select</th> -->
     </tr>
   </thead>
 
   <!-- table body -->
-  <tbody *ngIf="searchResults !== undefined">
+  <tbody *ngIf="categoryResults !== undefined">
 
-    <tr class="tabrow" *ngFor="let jokesResult of searchResults[1] ">
-      <td>{{jokesResult.url}}</td>
-      <td>{{jokesResult.value}}</td>
-      <!-- <td> <button type="button" class="btn btn-primary" (click)= ' doCommits( searchResult ) ' > Select</button> </td> -->
+    <tr class="tabrow" *ngFor="let categoryResult of categoryResults ">
+      <!-- <td>{{categoryResult}}</td> -->
+      <td> <button type="button" class="btn btn-primary" (click)= ' doRandomJokesUsingCategory( categoryResult ) ' > {{categoryResult}}</button> </td>
     </tr>
 
     
@@ -144,10 +69,10 @@
 
 
   								  <!--Table body if no result if found-->
-                                    <tbody *ngIf="searchResults.length == 0">
+                                    <tbody *ngIf="categoryResults.length == 0">
                                         <tr class="tabrow" >
                                               <td colspan="7">
-                                                  No Results Found
+                                                  No Results Found.1
                                               </td>
                                           </tr>
                                       </tbody>
