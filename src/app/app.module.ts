@@ -14,6 +14,8 @@ import { SearchPageComponent } from './search-page/search-page.component';
 import { CategoryPageComponent } from './category-page/category-page.component';
 import { CategoryDetailPageComponent } from './category-detail-page/category-detail-page.component';
 import { PeoplePageComponent } from './people-page/people-page.component';
+import { MessageComponent } from './message/message.component';
+import { ErrorResponseInterceptor } from './interceptors/error-response.interceptor';
 
 
 
@@ -24,7 +26,8 @@ import { PeoplePageComponent } from './people-page/people-page.component';
     SearchPageComponent,
     CategoryPageComponent,
     CategoryDetailPageComponent,
-    PeoplePageComponent
+    PeoplePageComponent,
+    MessageComponent
   ],
   imports: [
     BrowserModule,
@@ -34,7 +37,13 @@ import { PeoplePageComponent } from './people-page/people-page.component';
     ReactiveFormsModule,
     NgbModule,
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+    useClass: ErrorResponseInterceptor,
+    multi: true
+  }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
